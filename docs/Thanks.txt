@@ -1,0 +1,16 @@
+Julio Hernandez-Castro who proposed the original idea and gave me much guidance. http://www.azlaha.com/
+
+Jose Miguel Esparza for writing PeePDF (the basis of this tool). http://eternal-todo.com/
+
+Didier Stevens for his "make-PDF" tools. http://blog.didierstevens.com/
+
+Blake Hartstein for Jsunpack-n. https://code.google.com/p/jsunpack-n/
+
+Yusuke Shinyama for Pdf2txt.py. https://github.com/euske/pdfminer
+
+Nacho Barrientos Arias for Pdfcrack. http://pdfcrack.sourceforge.net/
+
+Kovid Goyal for Calibre (DRM removal). http://calibre-ebook.com/
+
+Jay Berkenbilt for QPDF. http://qpdf.sourceforge.net/
+
