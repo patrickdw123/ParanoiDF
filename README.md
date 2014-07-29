@@ -54,7 +54,7 @@ Shows the statistics of the file after being decoded/decrypted and analysed:
 
 Executes the interactive console, giving a wide range of tools to play with.
 
-    python paranoiDF.py -i [options] pdf_file
+    python paranoiDF.py -i 
 
 
 
