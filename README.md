@@ -62,7 +62,7 @@ Executes the interactive console, giving a wide range of tools to play with.
 
 It's possible to use a commands file to specify the commands to be executed in the batch mode. This type of execution is good to automatise analysis of several files:
 
-    python paranoiDF.py [options] -s commands_file pdf_file
+    python paranoiDF.py [options] -s commands_file 
 
 
 
