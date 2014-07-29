@@ -1,7 +1,7 @@
 ParanoiDF
 =========
 
-A PDF analysis tool that doesn't take prisoners.
+The swiss army knife of PDF Analysis Tools. 
 
 ** HOME PAGE **
 
@@ -31,8 +31,6 @@ No installation is needed apart of the commented dependencies, just execute:
 
 	python paranoiDF.py
 
-
-
 ** EXECUTION **
 
 There are two important options when ParanoidF is executed:
@@ -40,7 +38,9 @@ There are two important options when ParanoidF is executed:
 -f: Ignores the parsing errors. Analysing malicious files propably leads to parsing errors, so this parameter should be set.
 -l: Sets the loose mode, so does not search for the endobj tag because it's not obligatory. Helpful with malformed files.
 
+** FUNCTIONALITY **
 
+See https://github.com/patrickdw123/ParanoiDF/wiki.
 
 * Simple execution
 
