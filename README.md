@@ -10,7 +10,7 @@ Home Page
 
 * https://github.com/patrickdw123/ParanoiDF
 * patrickdw123(at)gmail(dot)com
-* Linkedin - search for Patrick Wragg.
+* http://uk.linkedin.com/pub/patrick-wragg/8a/a7a/324/
 
 Features
 -----------
