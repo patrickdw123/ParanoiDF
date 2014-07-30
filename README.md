@@ -6,9 +6,9 @@ The swiss army knife of PDF Analysis Tools.
 Home Page 
 -----------
 
-https://github.com/patrickdw123/ParanoiDF
-patrickdw123(at)gmail(dot)com
-Linkedin - search for Patrick Wragg.
+* https://github.com/patrickdw123/ParanoiDF
+* patrickdw123(at)gmail(dot)com
+* Linkedin - search for Patrick Wragg.
 
 Features
 -----------
