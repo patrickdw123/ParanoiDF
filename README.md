@@ -98,7 +98,7 @@ Shows the (raw) content of the stream.
 TODO
 ----------
 * Refine and test redaction thresholds.
-* Digital Signatures
+* Digital Signatures.
 
 
 
