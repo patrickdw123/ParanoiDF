@@ -3,6 +3,8 @@ ParanoiDF
 
 The swiss army knife of PDF Analysis Tools. 
 
+//For functionality, see Github WIKI.
+
 ** HOME PAGE **
 
 https://github.com/patrickdw123/ParanoiDF
