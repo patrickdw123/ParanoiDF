@@ -1,7 +1,9 @@
 ParanoiDF
 =========
 
-A PDF analysis tool that doesn't take prisoners.
+The swiss army knife of PDF Analysis Tools. 
+
+//For functionality, see Github WIKI.
 
 ** HOME PAGE **
 
@@ -31,8 +33,6 @@ No installation is needed apart of the commented dependencies, just execute:
 
 	python paranoiDF.py
 
-
-
 ** EXECUTION **
 
 There are two important options when ParanoidF is executed:
@@ -40,7 +40,9 @@ There are two important options when ParanoidF is executed:
 -f: Ignores the parsing errors. Analysing malicious files propably leads to parsing errors, so this parameter should be set.
 -l: Sets the loose mode, so does not search for the endobj tag because it's not obligatory. Helpful with malformed files.
 
+** FUNCTIONALITY **
 
+See https://github.com/patrickdw123/ParanoiDF/wiki.
 
 * Simple execution
 
@@ -54,7 +56,7 @@ Shows the statistics of the file after being decoded/decrypted and analysed:
 
 Executes the interactive console, giving a wide range of tools to play with.
 
-    python paranoiDF.py -i [options] pdf_file
+    python paranoiDF.py -i 
 
 
 
@@ -62,7 +64,7 @@ Executes the interactive console, giving a wide range of tools to play with.
 
 It's possible to use a commands file to specify the commands to be executed in the batch mode. This type of execution is good to automatise analysis of several files:
 
-    python paranoiDF.py [options] -s commands_file pdf_file
+    python paranoiDF.py [options] -s commands_file 
 
 
 

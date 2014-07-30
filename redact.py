@@ -65,7 +65,6 @@ def main(wordType, letterCase):
     fontSize = get_font_size() #Get font size.
     dictFile = open(dict_file_return(wordType, letterCase, dirPath))  #Input of dictionary.
     
-    dictFile = open('temp.txt')
     #Remove newline character from end of each word in dictionary.
     dictList = []
     lines = dictFile.readlines()
