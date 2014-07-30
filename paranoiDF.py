@@ -34,9 +34,7 @@
 #        along with ParanoiDF. If not, see <http://www.gnu.org/licenses/>.
 #
 #    This was written by Jose Miguel Esparza for the tool PeePDF. This has 
-#    been modified by Patrick Wragg 22/07/2014. The main modifications are 
-#    between the #### markings.
-
+#    been modified by Patrick Wragg 22/07/2014. 
 '''
     Main launch script.
 '''
