@@ -5,14 +5,15 @@ The swiss army knife of PDF Analysis Tools.
 
 //For functionality, see Github WIKI.
 
-** HOME PAGE **
----------------
+Home Page 
+-----------
 
 https://github.com/patrickdw123/ParanoiDF
 patrickdw123(at)gmail(dot)com
 Linkedin - search for Patrick Wragg.
 
-** DEPENDENCIES **
+Dependances
+-----------
 
 - In order to crack passwords: PdfCrack needed (apt-get install pdfcrack)
 - In order to remove DRM (editing, copying Etc.): Calibre's ebook-convert needed (apt-get install calibre)
@@ -28,20 +29,23 @@ Linkedin - search for Patrick Wragg.
 - Included modules: lzw, colorama, jsbeautifier, ccitt, pythonaes (Thanks to all the developers!!)
 
 
-** INSTALLATION **
+Installation
+-----------
 
 No installation is needed apart of the commented dependencies, just execute:
 
 	python paranoiDF.py
 
-** EXECUTION **
+Execution
+-----------
 
 There are two important options when ParanoidF is executed:
 
 -f: Ignores the parsing errors. Analysing malicious files propably leads to parsing errors, so this parameter should be set.
 -l: Sets the loose mode, so does not search for the endobj tag because it's not obligatory. Helpful with malformed files.
 
-** FUNCTIONALITY **
+Features
+-----------
 
 See https://github.com/patrickdw123/ParanoiDF/wiki.
 
