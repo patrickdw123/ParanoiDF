@@ -95,14 +95,14 @@ Shows the (raw) content of the object.
 
 Shows the (raw) content of the stream.
 
-
-* The rest of commands, of course
-
-> help
-
-
+TODO
+----------
+* Refine and test redaction thresholds.
+* Digital Signatures
 
 
-** Bugs **
+
+Bugs
+----------
 
 Feel free to send bugs/criticisms/praises/comments to patrickdw123(at)gmail(dot)com.
