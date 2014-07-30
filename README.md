@@ -17,10 +17,10 @@ Dependances
 
 - In order to crack passwords: PdfCrack needed (apt-get install pdfcrack)
 - In order to remove DRM (editing, copying Etc.): Calibre's ebook-convert needed (apt-get install calibre)
-- In order to decrypt PDFs: qpdf needed (apt-get install qpdf)
-- In order to use the command redact: 
-	-NLTK (Natural Language ToolKit) needed (apt-get install python-nltk)
-	-Java (Stanford parser is written in Java) needed (apt-get install default-jre)
+* In order to decrypt PDFs: qpdf needed (apt-get install qpdf)
+** In order to use the command redact: 
+	NLTK (Natural Language ToolKit) needed (apt-get install python-nltk)
+	Java (Stanford parser is written in Java) needed (apt-get install default-jre)
 
 - To support XML output "lxml" is needed:
 
