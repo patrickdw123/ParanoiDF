@@ -100,6 +100,9 @@ Shows the (raw) content of the stream.
 TODO
 ----------
 * Refine and test redaction thresholds.
+* Add automation of retrieval of redaction box information such as font size, font and redaction box coordinates.
+* Add a GUI.
+* Add other encryption algorithms (such as the AES).
 * Digital Signatures.
 
 
