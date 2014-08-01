@@ -103,7 +103,7 @@ TODO
 * Add automation of retrieval of redaction box information such as font size, font and redaction box coordinates.
 * Add a GUI.
 * Add other encryption algorithms (such as the AES).
-* Digital Signatures.
+* Digital Signatures analysis.
 
 
 
