@@ -1,7 +1,7 @@
 ParanoiDF
 =========
 
-The swiss army knife of PDF Analysis Tools. Based on peepdf - http://peepdf.eternal-todo.com
+The swiss army knife of PDF Analysis Tools. Based on peepdf - http://peepdf.eternal-todo.com. This README builds on the peepdf README.
 
 ![](http://i16.photobucket.com/albums/b37/psynto/1-1.jpg)
 
@@ -17,7 +17,7 @@ Features
 
 See https://github.com/patrickdw123/ParanoiDF/wiki.
 
-Dependances
+Dependancies
 -----------
 
 * In order to crack passwords: 
