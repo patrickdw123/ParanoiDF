@@ -1,7 +1,7 @@
 ParanoiDF
 =========
 
-The swiss army knife of PDF Analysis Tools.
+The swiss army knife of PDF Analysis Tools. Based on peepdf - http://peepdf.eternal-todo.com
 
 ![](http://i16.photobucket.com/albums/b37/psynto/1-1.jpg)
 
