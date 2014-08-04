@@ -53,7 +53,7 @@ from datetime import datetime
 from PDFCore import PDFParser, vulnsDict
 from PDFUtils import vtcheck
 
-VT_KEY = 'fc90df3f5ac749a94a94cb8bf87e05a681a2eb001aef34b6a0084b8c22c97a64'
+VT_KEY = '5fe2cd854c51a2b0a3beb07e3cb0ef3ab40590637a1c862f3c7728c9bbafa814'
 
 try:
     from colorama import init, Fore, Back, Style
