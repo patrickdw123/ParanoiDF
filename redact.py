@@ -234,11 +234,11 @@ def dict_file_return(wordType, letterCase, dirPath): #Input of dictionary.
 	    dictFile = dirPath + '/redactDict/lowerCase/country.txt'
     elif wordType == 'w':
 	if letterCase == 'u':
-	    dictFile = dirPath + '/redactDict/lowerCase/words.txt'
+	    dictFile = dirPath + '/redactDict/upperCase/words.txt'
 	elif letterCase == 'c':
 	    dictFile = dirPath + '/redactDict/capitalised/words.txt'
 	else:
-	    dictFile = dirPath + '/redactDict/upperCase/words.txt'
+	    dictFile = dirPath + '/redactDict/lowerCase/words.txt'
     return dictFile
 
 
