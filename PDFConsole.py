@@ -51,8 +51,6 @@ import hashlib
 import jsbeautifier
 import traceback
 import redact
-import makeJavaScript
-import makeEmbedded
 import imp
 from PDFUtils import *
 from PDFCrypto import *
