@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Paranoidf : ParanoiDF - PDF Analysis Suite based on PeePDF by Jose Miguel Esparza (http://peepdf.eternal-todo.com/). Tools added: Password cracking, redaction recovery, DRM removal, malicious JavaScript extraction, and more.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Paranoidf</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/patrickdw123/ParanoiDF">View on GitHub</a>
+
+          <h1 id="project_title">Paranoidf</h1>
+          <h2 id="project_tagline">ParanoiDF - PDF Analysis Suite based on PeePDF by Jose Miguel Esparza (http://peepdf.eternal-todo.com/). Tools added: Password cracking, redaction recovery, DRM removal, malicious JavaScript extraction, and more.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/patrickdw123/ParanoiDF/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/patrickdw123/ParanoiDF/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="paranoidf" class="anchor" href="#paranoidf"><span class="octicon octicon-link"></span></a>ParanoiDF</h1>
+
+<p>The swiss army knife of PDF Analysis Tools. Based on peepdf - <a href="http://peepdf.eternal-todo.com">http://peepdf.eternal-todo.com</a>. This README builds on the peepdf README.</p>
+
+<p><img src="http://i16.photobucket.com/albums/b37/psynto/1-1.jpg" alt=""></p>
+
+<h2>
+<a name="home-page-" class="anchor" href="#home-page-"><span class="octicon octicon-link"></span></a>Home Page </h2>
+
+<ul>
+<li><a href="https://github.com/patrickdw123/ParanoiDF">https://github.com/patrickdw123/ParanoiDF</a></li>
+<li>patrickdw123(at)gmail(dot)com</li>
+<li><a href="http://uk.linkedin.com/pub/patrick-wragg/8a/a7a/324/">http://uk.linkedin.com/pub/patrick-wragg/8a/a7a/324/</a></li>
+</ul><h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<p>See <a href="https://github.com/patrickdw123/ParanoiDF/wiki">https://github.com/patrickdw123/ParanoiDF/wiki</a>.</p>
+
+<h2>
+<a name="dependancies" class="anchor" href="#dependancies"><span class="octicon octicon-link"></span></a>Dependancies</h2>
+
+<ul>
+<li>In order to crack passwords: 
+
+<ul>
+<li>PdfCrack needed (apt-get install pdfcrack)</li>
+</ul>
+</li>
+<li>In order to remove DRM (editing, copying Etc.): 
+
+<ul>
+<li>Calibre's ebook-convert needed (apt-get install calibre)</li>
+</ul>
+</li>
+<li>In order to decrypt PDFs: 
+
+<ul>
+<li>qpdf needed (apt-get install qpdf)</li>
+</ul>
+</li>
+<li>In order to use the command redact:
+
+<ul>
+<li>NLTK (Natural Language ToolKit) needed (apt-get install python-nltk)</li>
+<li>Java (Stanford parser is written in Java) needed (apt-get install default-jre)</li>
+</ul>
+</li>
+<li>To support XML output "lxml" is needed:
+
+<ul>
+<li><a href="http://lxml.de/installation.html">http://lxml.de/installation.html</a></li>
+</ul>
+</li>
+<li>Included modules: lzw, colorama, jsbeautifier, ccitt, pythonaes (Thanks to all the developers!!)</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>No installation is needed apart of the commented dependencies, just execute:</p>
+
+<pre><code>python paranoiDF.py
+</code></pre>
+
+<h2>
+<a name="execution" class="anchor" href="#execution"><span class="octicon octicon-link"></span></a>Execution</h2>
+
+<p>There are two important options when ParanoidF is executed:</p>
+
+<p>-f: Ignores the parsing errors. Analysing malicious files propably leads to parsing errors, so this parameter should be set.
+-l: Sets the loose mode, so does not search for the endobj tag because it's not obligatory. Helpful with malformed files.</p>
+
+<ul>
+<li>Simple execution</li>
+</ul><p>Shows the statistics of the file after being decoded/decrypted and analysed:</p>
+
+<pre><code>python paranoiDF.py [options] pdf_file
+</code></pre>
+
+<ul>
+<li>Interactive console</li>
+</ul><p>Executes the interactive console, giving a wide range of tools to play with.</p>
+
+<pre><code>python paranoiDF.py -i 
+</code></pre>
+
+<ul>
+<li>Batch execution</li>
+</ul><p>It's possible to use a commands file to specify the commands to be executed in the batch mode. This type of execution is good to automatise analysis of several files:</p>
+
+<pre><code>python paranoiDF.py [options] -s script_file 
+</code></pre>
+
+<h2>
+<a name="some-hints" class="anchor" href="#some-hints"><span class="octicon octicon-link"></span></a>Some Hints</h2>
+
+<p>If the information shown when a PDF file is parsed is not enough to know if it's harmful or not, the following commands can help to do it:</p>
+
+<ul>
+<li>tree</li>
+</ul><p>Shows the tree graph of the file or specified version. Here we can see suspicious elements.</p>
+
+<ul>
+<li>offsets </li>
+</ul><p>Shows the physical map of the file or the specified version of the document. This is helpful to see unusual big objects or big spaces between objects.</p>
+
+<ul>
+<li>search</li>
+</ul><p>Search the specified string or hexadecimal string in the objects (decoded and encrypted streams included).</p>
+
+<ul>
+<li>object/rawobject</li>
+</ul><p>Shows the (raw) content of the object.</p>
+
+<ul>
+<li>stream/rawstream</li>
+</ul><p>Shows the (raw) content of the stream.</p>
+
+<h2>
+<a name="todo" class="anchor" href="#todo"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>Refine and test redaction thresholds.</li>
+<li>Add automation of retrieval of redaction box information such as font size, font and redaction box coordinates.</li>
+<li>Add a GUI.</li>
+<li>Add other encryption algorithms (such as the AES).</li>
+<li>Digital Signatures analysis.</li>
+</ul><h2>
+<a name="bugs" class="anchor" href="#bugs"><span class="octicon octicon-link"></span></a>Bugs</h2>
+
+<p>Feel free to send bugs/criticisms/praises/comments to patrickdw123(at)gmail(dot)com.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Paranoidf maintained by <a href="https://github.com/patrickdw123">patrickdw123</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-53766717-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
