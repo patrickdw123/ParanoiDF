@@ -97,14 +97,13 @@ Shows the (raw) content of the object.
 
 Shows the (raw) content of the stream.
 
-TODO
+TODO (with date that I intend to start work on)
 ----------
-* Refine and test redaction thresholds.
-* Add automation of retrieval of redaction box information such as font size, font and redaction box coordinates.
-* Add a GUI.
-* Add other encryption algorithms (such as the AES).
-* Digital Signatures analysis.
-
+* Refine and test redaction thresholds: 30/08/2014
+* Add automation of retrieval of redaction box information such as font size, font and redaction box coordinates: 30/08/2014
+* Add other encryption algorithms (such as the AES): 1/10/2014 
+* Digital Signatures analysis: 1/10/2014
+* Add a GUI: Near future
 
 
 Bugs
