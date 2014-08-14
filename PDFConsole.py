@@ -325,8 +325,6 @@ class PDFConsole(cmd.Cmd):
 	    inputFile = args[1]
 	    outputFile = args[2]
 	    try: 
-		file = open(inputFile)
-		file.close()
 		output = PdfFileWriter()
 		input = PdfFileReader(file(inputFile, 'rb'))
 		for i in range(0, input.getNumPages()):
