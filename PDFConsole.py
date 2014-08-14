@@ -341,7 +341,6 @@ class PDFConsole(cmd.Cmd):
 	    self.help_encrypt()
 
     def help_encrypt(self):
-	print 'Usage $password $input-file $output-file'
 	print newLine + 'Usage: encrypt $password $input-pdf $output-pdf'
         print newLine + 'Encrypt a PDF document.' + newLine
 
