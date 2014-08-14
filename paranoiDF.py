@@ -324,7 +324,15 @@ try:
 	    if not os.path.isdir(pdfMinerDirCheck):
 		print 'PdfMiner files not found, aborting.'
 		sys.exit()
-	    os.system('python pdf2txt.py ' + fileName)
+	    try:
+		file = open(dirCheck + '/pdf2txt.py')
+		file.close()
+		os.system('python ' + dirCheck + '/pdf2txt.py ' + fileName)
+	    except IOError:
+		print ''
+		print 'No pdf2txt.py script found, check source repository and re-download.'
+		print ''
+		sys.exit()
 	    sys.exit()	
 		
 #################################################################################################
