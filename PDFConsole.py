@@ -343,6 +343,7 @@ class PDFConsole(cmd.Cmd):
         print newLine + 'Encrypt a PDF document.' + newLine
 
     def do_crackpw(self, argv): #Use pdfcrack in-house to crack a password.
+	dirCheck = os.path.dirname(os.path.abspath(sys.argv[0]))
 	try:		
 	    null = open('/dev/null', 'w')
 	    subprocess.Popen('pdfcrack', stdout=null, stderr=null)
@@ -369,7 +370,7 @@ class PDFConsole(cmd.Cmd):
 		    file = open(arg)
 		    file.close()
 		    try:
-			file = open('pdfcrack/charset.txt', 'r')
+			file = open(dirCheck + '/pdfcrack/charset.txt', 'r')
 			charset = file.read()
 			file.close()
 			print 'Brute forcing using chars from "pdfcrack/charset.txt".'
