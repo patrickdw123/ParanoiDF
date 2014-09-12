@@ -3,6 +3,9 @@ ParanoiDF
 
 The swiss army knife of PDF Analysis Tools. Based on peepdf - http://peepdf.eternal-todo.com. This README builds on the peepdf README.
 
+This tool was developed as part of my M.Sc dissertation for the School of Computing (University of Kent).
+The man behind the idea for this tool was Julio Hernandez-Castro (www.azhala.com).
+
 ![](http://i16.photobucket.com/albums/b37/psynto/1-1.jpg)
 
 Home Page 
