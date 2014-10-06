@@ -1,13 +1,13 @@
-#    ParanoiDF. A combination of several PDF analysis/manipulation tools to 
+#    ParanoiDF. A combination of several PDF analysis/manipulation tools to
 #    produce one of the most technically useful PDF analysis tools.
-#    
+#
 #    Idea proposed by Julio Hernandez-Castro, University of Kent, UK.
 #    By Patrick Wragg
 #    University of Kent
 #    21/07/2014
-#    
+#
 #    With thanks to:
-#    Julio Hernandez-Castro, my supervisor. 
+#    Julio Hernandez-Castro, my supervisor.
 #    Jose Miguel Esparza for writing PeePDF (the basis of this tool).
 #    Didier Stevens for his "make-PDF" tools.
 #    Blake Hartstein for Jsunpack-n.
@@ -40,31 +40,38 @@
     a redaction box. It requires the user to search through the objects of the
     PDF first using the Interactive Console to find the details about the font
     size, font and size of redaction box. Tutorial.pdf has a guide on this.
-	
+
     If the user wishes, he/she can use the implemented grammar parser (Stanford
     Parser) to obtain a parsing score and the script will sort the list for them.
-''' 
+'''
 
 import sys
 import re
 import difflib
 import os
 import json
-import Image
-import ImageDraw
-import ImageFont 
 import operator
-	
+
+try:
+    import Image
+    import ImageDraw
+    import ImageFont
+except:
+    from PIL import Image
+    from PIL import ImageDraw
+    from PIL import ImageFont
+
+
 def main(wordType, letterCase):
-	        
+
     successList=[]
     dirPath = os.path.dirname(os.path.abspath(sys.argv[0]))
-	
+
     redactAreaX,redactAreaY = get_redaction_box() #Get redaction box size.
     fontName = get_font(dirPath) #Get font.
     fontSize = get_font_size() #Get font size.
     dictFile = open(dict_file_return(wordType, letterCase, dirPath))  #Input of dictionary.
-    
+
     #Remove newline character from end of each word in dictionary.
     dictList = []
     lines = dictFile.readlines()
@@ -86,7 +93,7 @@ def main(wordType, letterCase):
 	if not successWord == 0:
 	    successList.append(successWord)
 	numberOfSuccesses = len(successList)
-		
+
 	#Print progress percentage.
 	sys.stdout.write('\r{0:.0f}%'.format((float(count)/lengthOfDict)*100))
 	count+=1
@@ -98,25 +105,25 @@ def main(wordType, letterCase):
 	    total_matches(numberOfSuccesses, lengthOfDict)
 	    output_matches(dirPath, successList)
 	    results_message(dirPath)
-        else:		
+        else:
             total_matches(numberOfSuccesses, lengthOfDict)
   	    print ''
 	    doGrammarParse = grammar_parse_query() #Ask user if they want to grammar parse.
 	    if doGrammarParse:
 	        #Start grammar parse.
 	        print ''
-	        sentance = raw_input('Enter sentance where $word is word: ')			
+	        sentance = raw_input('Enter sentance where $word is word: ')
 	        file = open(dirPath + '/tempSentance.txt', 'w') #Sentance file for Stanford to parse.
 	        for word in successList:
 	            result = build_sentance(sentance, word)
 	            file.write(result)
 	        file.close()
-	        scoreString = stanford_parser(dirPath) #Stanford parser execution.			
-	        scoreList = find_score(scoreString) #Find score in scoreString.			
-	        wordScoreDict = add_score_to_dict(scoreList, successList) #Put score and word in dict.			
-	        scoreList = sort_dict(wordScoreDict) #Sort dictonary.	
+	        scoreString = stanford_parser(dirPath) #Stanford parser execution.
+	        scoreList = find_score(scoreString) #Find score in scoreString.
+	        wordScoreDict = add_score_to_dict(scoreList, successList) #Put score and word in dict.
+	        scoreList = sort_dict(wordScoreDict) #Sort dictonary.
 	        total_matches(numberOfSuccesses, lengthOfDict) #Print total matches
-		 	    
+
 	        counter = 1
 	        numberOfResults = number_of_results_return() #Print N number of highest scoring words.
 	        file = open(dirPath + '/results.txt','w+')
@@ -134,14 +141,14 @@ def main(wordType, letterCase):
 	        os.remove(dirPath + '/tempSentance.txt')
 	        #End grammar parse.
 
-	    else: #No grammar parse.	   
+	    else: #No grammar parse.
 	        total_matches(numberOfSuccesses, lengthOfDict)
 	        output_matches(dirPath, successList)
 	        results_message(dirPath)
     else:
 	print ''
 	print ''
-	print 'No matches. Are you sure you got the coordinates, font and font size correct?'  
+	print 'No matches. Are you sure you got the coordinates, font and font size correct?'
 
 
 def grammar_parse_query(): #Ask user if they want to grammar parse.
@@ -150,7 +157,7 @@ def grammar_parse_query(): #Ask user if they want to grammar parse.
 	if grammarQuery.lower() == 'y':
 		return True
 		break
-	elif grammarQuery.lower() == 'n': 
+	elif grammarQuery.lower() == 'n':
 		return False
 		break
 
@@ -158,7 +165,7 @@ def grammar_parse_query(): #Ask user if they want to grammar parse.
 def number_of_results_return(): #Ask user how many results they want.
     while True:
 	try:
-	    numberOfResults = int(input('Number of results? ')) 
+	    numberOfResults = int(input('Number of results? '))
 	    break
  	except ValueError:
 	    print 'Invalid number, try again.'
@@ -174,11 +181,11 @@ def remove_newline(word): #Remove newline from word.
 
 def sort_dict(wordScoreDict): #Sort dictonary and output to list 'scoreList'.
     scoreList = sorted(wordScoreDict.iteritems(), key=operator.itemgetter(1))
-    return scoreList	
+    return scoreList
 
 
 def add_score_to_dict(scoreList, successList): #Put score and associated word in dictionary.
-    i = 0	
+    i = 0
     wordScoreDict={}
     for score in scoreList:
 	wordScoreDict[successList[i]] = score
@@ -187,28 +194,28 @@ def add_score_to_dict(scoreList, successList): #Put score and associated word in
 
 
 def find_score(scoreString): #Find score in scoreString.
-    scoreList=[] 
+    scoreList=[]
     regex = ur'\bwith score -[0-9]{1,}.[0-9]{1,}\b'
     result = re.findall(regex, scoreString)
     for score in result:
 	scoreList.append(score[12:])
     return scoreList
 
-	
+
 def stanford_parser(dirPath): #Stanford parser execution.
 	os.system(dirPath + '/stanfordParser/' + './' + 'lexparser.sh ' + dirPath + '/tempSentance.txt > ' + dirPath + '/tempScore.txt')
 	file = open(dirPath + '/tempScore.txt', 'r')
 	scoreString = file.read()
 	file.close()
 	return scoreString
-			
+
 
 def is_word(wordType): #If not w, then grammar check not needed.
     if 'w' in wordType:
 	return True
     else:
 	return False
-	
+
 
 def dict_file_return(wordType, letterCase, dirPath): #Input of dictionary.
     if  wordType == 'f':
@@ -255,7 +262,7 @@ def check_dict_files(filepath): #Check if dictionary file exists.
 def build_sentance(sentance, word): #Build sentance.
     while True:
 	if '$word' in sentance:
-	    break    
+	    break
 	else:
 	    print '$word not found, try again. Example: \'The $word crossed the road.\''
     index = sentance.index('$word')
@@ -270,8 +277,8 @@ def build_sentance(sentance, word): #Build sentance.
 #Calculate length in pixels from colour coordinates.
 #If word fits, add to Array=<successList>.
 def check_word(word, redactAreaX,
- 		redactAreaY, fontName, 
-		fontSize): 
+ 		redactAreaY, fontName,
+		fontSize):
 
     imageDimensionX = redactAreaX + 10
     imageDimensionY = redactAreaY + 5
@@ -279,7 +286,7 @@ def check_word(word, redactAreaX,
     d = ImageDraw.Draw(img)
     f = ImageFont.truetype(fontName, fontSize)
     d.text((0, 0), word, fill=(255,0,0), font=f)
-    img = img.convert('P') 
+    img = img.convert('P')
 
     xAndyCoord = []
     for x in range(img.size[1]): #Get coordinates.
@@ -316,7 +323,7 @@ def check_word(word, redactAreaX,
     if xLength <= maxX and xLength >= minX and yLength <= maxY and yLength >= minY:
 	#Success.
 	return word
-    else: 
+    else:
 	#No fit.
 	return 0
 
@@ -332,15 +339,15 @@ def output_matches(dirPath, successList): #Writes results to results.txt.
 def total_matches(total, lengthOfDict): #Return total matches/successes.
     totalMatches = 'Total matches: ' + str(total) + '/' + str(lengthOfDict) + ' words.'
     print totalMatches
-	
 
-def results_message(dirPath): 
+
+def results_message(dirPath):
     print 'Results written to ' + dirPath + '/results.txt.'
 
 
 def get_font(dirPath): #Return fontName and check if exists.
     while True:
-	try:	
+	try:
 	    fontName = raw_input('Enter the font (Ext. not needed): ')
 	    fontName = dirPath + '/fonts/' + fontName + '.ttf'
 	    file = open(fontName)
@@ -353,7 +360,7 @@ def get_font(dirPath): #Return fontName and check if exists.
 
 def get_redaction_box(): #Return redaction box coordinates.
     while True:
-	try:	
+	try:
 	    print 'Enter 4 coordinates of BBox as shown in object: [n, n, n, n]'
 	    lowerLeft = raw_input('')
 	    lowerRight = raw_input(lowerLeft + ', ')
@@ -365,7 +372,7 @@ def get_redaction_box(): #Return redaction box coordinates.
 
 	    redactAreaX = int(redactAreaX)
 	    redactAreaY = int(redactAreaY)
-	
+
 	    print 'X = ', redactAreaX, ', Y = ', redactAreaY
 	    return redactAreaX, redactAreaY
 	    break
@@ -386,24 +393,3 @@ def get_font_size(): #Return fontSize and check if valid integer.
 		print 'Positive value required, try again.'
 	except ValueError:
 	    print 'Not a valid number, please try again.'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
