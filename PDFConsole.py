@@ -75,6 +75,13 @@ try:
 except:
     RL_PROMPT_START_IGNORE = RL_PROMPT_END_IGNORE = ''
     
+try:	
+    from bs4 import BeautifulSoup
+except ImportError:
+    print 'BeautifulSoup needed for JS extraction. "pip install BeautifulSoup4". (Will include this in the build soon).'    
+    sys.exit()
+    
+    
 # File and variable redirections 
 FILE_WRITE = 1
 FILE_ADD = 2
