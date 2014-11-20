@@ -1,13 +1,13 @@
-#    ParanoiDF. A combination of several PDF analysis/manipulation tools to 
+#    ParanoiDF. A combination of several PDF analysis/manipulation tools to
 #    produce one of the most technically useful PDF analysis tools.
-#    
+#
 #    Idea proposed by Julio Hernandez-Castro, University of Kent, UK.
 #    By Patrick Wragg
 #    University of Kent
 #    21/07/2014
-#    
+#
 #    With thanks to:
-#    Julio Hernandez-Castro, my supervisor. 
+#    Julio Hernandez-Castro, my supervisor.
 #    Jose Miguel Esparza for writing PeePDF (the basis of this tool).
 #    Didier Stevens for his "make-PDF" tools.
 #    Blake Hartstein for Jsunpack-n.
@@ -33,8 +33,8 @@
 #        You should have received a copy of the GNU General Public License
 #        along with ParanoiDF. If not, see <http://www.gnu.org/licenses/>.
 #
-#    This was written by Jose Miguel Esparza for the tool PeePDF. This has 
-#    been modified by Patrick Wragg 22/07/2014. 
+#    This was written by Jose Miguel Esparza for the tool PeePDF. This has
+#    been modified by Patrick Wragg 22/07/2014.
 '''
     Main launch script.
 '''
@@ -48,7 +48,6 @@ import datetime
 import hashlib
 import traceback
 import subprocess
-import apt
 from datetime import datetime
 from PDFCore import PDFParser, vulnsDict
 from PDFUtils import vtcheck
@@ -65,7 +64,7 @@ def getRepPaths(url, path = ''):
     paths = []
     dumbReDirs = '<li><a[^>]*?>(.*?)/</a></li>'
     dumbReFiles = '<li><a[^>]*?>([^/]*?)</a></li>'
-    
+
     try:
         browsingPage = urllib2.urlopen(url+path).read()
     except:
@@ -244,14 +243,14 @@ def getPeepXML(statsDict, version, revision):
                 urlInfo.text = url
     return etree.tostring(root, pretty_print=True)
 
-    
+
 author = 'Patrick Wragg'
 email = 'patrickdw123(at)gmail(dot)com'
 university = 'University of Kent'
 url = 'https://github.com/patrickdw123/ParanoiDF'
 version = '0.1'
 revision = '0.1'
-dirCheck = os.path.dirname(os.path.abspath(sys.argv[0]))   
+dirCheck = os.path.dirname(os.path.abspath(sys.argv[0]))
 stats = ''
 pdf = None
 fileName = None
@@ -267,7 +266,7 @@ paranoiDFHeader =  versionHeader + newLine*2 +\
                url + newLine +\
                email + newLine +\
 	       university + newLine +\
-               author + newLine 
+               author + newLine
 
 argsParser = optparse.OptionParser(usage='Usage: '+sys.argv[0]+' [options] InputFile',description=versionHeader)
 argsParser.add_option('-i', '--interactive', action='store_true', dest='isInteractive', default=False, help='Sets console mode (main commands here)')
@@ -299,7 +298,7 @@ try:
         resetColor = Style.RESET_ALL
     if options.version:
         print paranoiDFHeader
-          
+
     else:
         if len(args) == 1:
 		if not options.isFetchUrl:
@@ -308,11 +307,11 @@ try:
                			sys.exit('Error: The file "'+fileName+'" does not exist!!')
         elif len(args) > 1 or (len(args) == 0 and not options.isInteractive and not options.scriptFile):
             sys.exit(argsParser.print_help())
-            
+
         if options.scriptFile != None:
             if not os.path.exists(options.scriptFile):
-                sys.exit('Error: The script file "'+options.scriptFile+'" does not exist!!')	         
-	  
+                sys.exit('Error: The script file "'+options.scriptFile+'" does not exist!!')
+
 ##################################################################################################
 
 	if options.isFetchUrl: #Fetch PDF from URL using wget.
@@ -333,8 +332,8 @@ try:
 		print 'No pdf2txt.py script found, check source repository and re-download.'
 		print ''
 		sys.exit()
-	    sys.exit()	
-		
+	    sys.exit()
+
 #################################################################################################
 
         if fileName != None:
@@ -361,7 +360,7 @@ try:
                     else:
                         pdf.addError('Bad response from VirusTotal!!')
             statsDict = pdf.getStats()
-        
+
         if options.xmlOutput:
             try:
                 from lxml import etree
@@ -370,7 +369,7 @@ try:
             except:
                 errorMessage = '*** Error: Exception while generating the XML file!!'
                 traceback.print_exc(file=open(errorsFile,'a'))
-                raise Exception('ParanoiDF exception','Feel free to send me an email.')    
+                raise Exception('ParanoiDF exception','Feel free to send me an email.')
         else:
             if COLORIZED_OUTPUT and not options.avoidColors:
                 try:
@@ -402,7 +401,7 @@ try:
                     if stats != '':
                         stats += newLine
                     statsDict = pdf.getStats()
-                                                    
+
                     stats += beforeStaticLabel + 'File: ' + resetColor + statsDict['File'] + newLine
                     stats += beforeStaticLabel + 'MD5: ' + resetColor + statsDict['MD5'] + newLine
                     stats += beforeStaticLabel + 'SHA1: ' + resetColor + statsDict['SHA1'] + newLine
@@ -418,7 +417,7 @@ try:
                                 	 if detectionLevel == 0:
                                 	 	 detectionColor = alertColor
                                 	 elif detectionLevel == 1:
-                                	 	 detectionColor = warningColor  
+                                	 	 detectionColor = warningColor
                                  detectionRate = '%s%d%s/%d' % (detectionColor, statsDict['Detection'][0], resetColor, statsDict['Detection'][1])
                                  if statsDict['Detection report'] != '':
                                      detectionReportInfo = beforeStaticLabel + 'Detection report: ' + resetColor + statsDict['Detection report'] + newLine
@@ -440,7 +439,7 @@ try:
                     stats += beforeStaticLabel + 'Objects: ' + resetColor + statsDict['Objects'] + newLine
                     stats += beforeStaticLabel + 'Streams: ' + resetColor + statsDict['Streams'] + newLine
                     stats += beforeStaticLabel + 'Comments: ' + resetColor + statsDict['Comments'] + newLine
-                    stats += beforeStaticLabel + 'Errors: ' + resetColor + str(len(statsDict['Errors'])) + newLine*2                    
+                    stats += beforeStaticLabel + 'Errors: ' + resetColor + str(len(statsDict['Errors'])) + newLine*2
                     for version in range(len(statsDict['Versions'])):
                         statsVersion = statsDict['Versions'][version]
                         stats += beforeStaticLabel + 'Version ' + resetColor + str(version) + ':' + newLine
@@ -488,8 +487,8 @@ try:
                                         vulnName = vulnsDict[vuln][0]
                                         vulnCVEList = vulnsDict[vuln][1]
                                         stats += '\t\t' + beforeStaticLabel + vulnName + ' ('
-                                        for vulnCVE in vulnCVEList: 
-                                            stats += vulnCVE + ',' 
+                                        for vulnCVE in vulnCVEList:
+                                            stats += vulnCVE + ','
                                         stats = stats[:-1] + '): ' + resetColor + str(vulns[vuln]) + newLine
                                     else:
                                         stats += '\t\t' + beforeStaticLabel + vuln + ': ' + resetColor + str(vulns[vuln]) + newLine
@@ -499,8 +498,8 @@ try:
                                         vulnName = vulnsDict[element][0]
                                         vulnCVEList = vulnsDict[element][1]
                                         stats += '\t\t' + beforeStaticLabel + vulnName + ' ('
-                                        for vulnCVE in vulnCVEList: 
-                                            stats += vulnCVE + ',' 
+                                        for vulnCVE in vulnCVEList:
+                                            stats += vulnCVE + ','
                                         stats = stats[:-1] + '): ' + resetColor + str(elements[element]) + newLine
                                     else:
                                         stats += '\t\t' + beforeStaticLabel + element + ': ' + resetColor + str(elements[element]) + newLine
@@ -536,7 +535,7 @@ except Exception as e:
     print errorColor + errorMessage + resetColor + newLine
 finally:
     if len(errorMessage) > 1:
-        message = newLine + 'Please, don\'t forget to report the errors found:' + newLine*2 
+        message = newLine + 'Please, don\'t forget to report the errors found:' + newLine*2
         message += '\t- Sending the file "errors.txt" to the author (mailto:psynt555REMOVETHIS@gmail.com)"' + newLine
         message = errorColor + message + resetColor
         sys.exit(message)
